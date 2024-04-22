@@ -19,10 +19,8 @@
     <router-link to="/AreaToDB">AreaToDB</router-link> |
     <router-link to="/AreaToDBAll">AreaToDBAll</router-link> |
     <router-link to="/AskToDB">AskToDB</router-link> |
+    <router-link to="/TravelPlanner">TravelPlanner</router-link> |
 
-
-
-    
   </nav>
   <router-view/>
 </template>

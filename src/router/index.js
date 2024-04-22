@@ -142,6 +142,13 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */'@/bat/API/TourSample.vue')
   },
 
+  {
+    path: '/TravelPlanner',
+    name: 'TravelPlanner',
+
+    component: () => import(/* webpackChunkName: "about" */'@/bat/API/TravelPlanner.vue')
+  },
+
 
 ]
 
