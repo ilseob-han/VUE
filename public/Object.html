@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Object
+    <button onClick="btn_ev2()">이벤트발생</button>
+
+    <script>
+        function btn_ev()
+        {alert('obj')};
+        // 자바의 게터/세터와 같은 역학이 object가 한다. 
+        
+        let obj = new Object();
+ 
+        obj.key1 = 'value';
+        obj.key2 = '1';
+        obj.key3 = 'key3';
+        obj.key4 = '메롱';
+        // 자바스크립트는 객체에 뭐든지 다 들어간다. 객체 텍스트 전체
+        
+        console.log(obj);
+
+        let obj1 = {key1: '스티븐킹의 소설이 좋아.'} //이건 hash맵 스타일이다.
+        console.log(obj1);
+
+        function btn_ev2()
+        {alert(obj1.key1)};
+
+        console.log(obj1.key1);
+        
+    </script>
+</body>
+</html>

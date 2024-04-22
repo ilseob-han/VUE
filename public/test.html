@@ -1,0 +1,46 @@
+<html>
+
+<head>
+    <style>
+        #app {
+            font-family: Avenir, Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-align: center;
+            color: #2c3e50;
+            margin-top: 60px;
+        }
+
+        .btn_change {
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>멋진 스타일</h2>
+    <h4 style='color: red' id="styleTitle">오늘의 강남패션</h4>
+    <h4>좋아요: <span id="span_good">0</span></h4>
+    <button onClick="goodUp()">좋아요</button>
+    <button class="btn_change" onClick="styleChange()">패션 변경하기</button>
+
+    <script>
+        let good = 0;
+        let todayStyle = '오늘의 강남패션';
+        let colorStyle = 'color: red';
+
+        function styleChange() {
+            alert('style');
+
+            document.getElementById('styleTitle').innerText = '시원한 유럽패션';
+            document.getElementById('styleTitle').style.color = 'blue';
+
+        }
+
+        function goodUp() {
+            document.getElementById('span_good').innerText = ++good;
+        }
+    </script>
+</body>
+
+</html>
