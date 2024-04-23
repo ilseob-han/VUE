@@ -42,6 +42,7 @@
     methods: {
       fetchData() {
         const apiUrl = 'http://apis.data.go.kr/B551011/KorService1/detailCommon1';
+        
         const params = {
           serviceKey: 'SCiS2QeHSZaBzcfs5i8o7BsdxWGp6WTXKdMeOwlZuTwcQzL2bm0BR57M5AxQwIei0Of96djoM3KobZh5Gq1uLA==', // API 키
           MobileOS: 'ETC', // 필요한 파라미터
@@ -56,6 +57,7 @@
         axios.get(apiUrl, { params: params })
           .then(response => {
             this.items = response.data.response.body.items.item; // 응답에서 데이터를 추출하여 items 배열에 저장
+            console.log(response.data.response.body.items.item); // 에러 로그
           })
           .catch(error => {
             console.error('API 호출 에러:', error); // 에러 로그
