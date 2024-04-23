@@ -2,6 +2,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 
+
 const routes = [
   {
     path: '/',
@@ -149,6 +150,19 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */'@/bat/API/TravelPlanner.vue')
   },
 
+  {
+    path: '/kakaoStart',
+    name: 'kakaoStart',
+
+    component: () => import(/* webpackChunkName: "about" */'@/bat/API/LoginStart.vue')
+  },
+
+  {
+    path: '/kakaoLogin',
+    name: 'kakaoLogin',
+
+    component: () => import(/* webpackChunkName: "about" */'@/bat/test.vue')
+  },
 
 ]
 

@@ -20,6 +20,8 @@
     <router-link to="/AreaToDBAll">AreaToDBAll</router-link> |
     <router-link to="/AskToDB">AskToDB</router-link> |
     <router-link to="/TravelPlanner">TravelPlanner</router-link> |
+    <router-link to="/kakaoStart">kakaoStart</router-link> |
+
 
   </nav>
   <router-view/>
