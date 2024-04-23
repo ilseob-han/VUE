@@ -1,6 +1,6 @@
 <template>
   <nav>
-    <router-link to="/">Home</router-link> |
+    <!-- <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link> |
     <router-link to="/bind">exam</router-link> |
     <router-link to="/food">food</router-link> |
@@ -11,15 +11,16 @@
     <router-link to="/modalIf">modalIf</router-link> |
     <router-link to="/axio">axio</router-link> |
     <router-link to="/nodeTest">nodeTest</router-link> |  
-    <span> test</span>
+    <span> test</span> -->
     <router-link to="/tourAPI">tourAPI</router-link> |
     <router-link to="/tourAPILoca">tourAPILoca</router-link> |
     <router-link to="/tourAPIFestival">tourAPIFestival</router-link> |
     <router-link to="/tourAPIitem">tourAPIitem</router-link> |
     <router-link to="/AreaToDB">AreaToDB</router-link> |
     <router-link to="/AreaToDBAll">AreaToDBAll</router-link> |
-    <router-link to="/AskToDB">AskToDB</router-link> |
+    <!-- <router-link to="/AskToDB">AskToDB</router-link> | -->
     <router-link to="/TravelPlanner">TravelPlanner</router-link> |
+    <router-link to="/SelfPlan">SelfPlan</router-link> |
     <router-link to="/kakaoStart">kakaoStart</router-link> |
 
 

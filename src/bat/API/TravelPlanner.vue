@@ -47,7 +47,7 @@
           Map Goes Here
         </div>
         <button class="btn btn-primary">일정 저장하기</button>
-        <button class="btn btn-secondary">Cielo직접 만들기</button>
+        <button class="btn btn-secondary" @click="goToSelfPlan">Cielo직접 만들기</button>
       
       </div>
 
@@ -85,12 +85,38 @@ export default {
         .catch(error => {
           console.error('Error:', error);
         });
-    }
+    },
 
 
+    goToSelfPlan() {
+  // 콘솔 로그로 파라미터 데이터 확인
+  console.log("Attempting to route to SelfPlan");
+  console.log("Routing to SelfPlan with params:", {
+    days: this.days,
+    companions: this.companions,
+    style: this.style,
+    location: this.location
+  });
 
-    
+  // $router.push() 호출 시 사용할 객체
+  this.$router.push({
+  name: 'SelfPlan',
+  query: {
+    days: this.days,
+    companions: this.companions,
+    style: this.style,
+    location: this.location
   }
+});
+}
+
+
+
+
+
+
+  }
+
 };
 </script>
 

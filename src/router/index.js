@@ -151,6 +151,14 @@ const routes = [
   },
 
   {
+    path: '/self-plan',
+    name: 'SelfPlan',
+    component: () => import('@/bat/API/SelfPlan.vue'), // 동적 임포트를 사용하여 필요할 때 로드
+    props: true
+  },
+
+
+  {
     path: '/kakaoStart',
     name: 'kakaoStart',
 
