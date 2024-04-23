@@ -1,33 +1,38 @@
 <template>
-    <div>
-      <h1>여행 계획 세부 정보</h1>
-      <p>여행 일수: {{ days }}</p>
-      <p>동반자: {{ companions }}</p>
-      <p>여행 스타일: {{ style }}</p>
-      <p>여행 지역: {{ location }}</p>
-      <button @click="sendPlan">계획 보내기</button>
-      <div v-if="itineraries.length > 0">
-        <h2>여행 일정</h2>
-        <div class="grid-container">
-          <div v-for="(group, index) in groupedItineraries" :key="index" class="grid-item">
-            <div class="grid-title">{{ group.title }}</div>
-            <div class="grid-content">
-              <ul>
-                <li v-for="(item, subIndex) in group.items" :key="subIndex">
-                  <img :src="item.firstimage || 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 1 1\'/%3E'" alt="Image of {{ item.title }}" class="img-fluid" style="width: 150px;">
-                  <p>{{ item.title }}</p>
-                  <p>{{ item.addr1 }}</p>
-                  <button @click="viewDetails(item)">상세 정보</button>
-                  <button @click="addSchedule(item)">일정 추가</button>
-                </li>
-              </ul>
-            </div>
+    <div class="main-container">
+      <div class="plan-details">
+        <h1>여행 계획 세부 정보</h1>
+        <p>여행 일수: {{ days }}</p>
+        <p>동반자: {{ companions }}</p>
+        <p>여행 스타일: {{ style }}</p>
+        <p>여행 지역: {{ location }}</p>
+        <button @click="sendPlan">계획 보내기</button>
+      </div>
+      <div class="grid-container">
+        <div class="grid-item" v-for="(group, index) in groupedItineraries" :key="index">
+          <div class="grid-title">{{ group.title }}</div>
+          <div class="grid-content">
+            <ul>
+              <li v-for="(item, subIndex) in group.items" :key="subIndex">
+                <img :src="item.firstimage || 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 1 1\'/%3E'" alt="Image of {{ item.title }}" class="img-fluid" style="width: 150px;">
+                <p>{{ item.title }}</p>
+                <p>{{ item.addr1 }}</p>
+                <button @click="viewDetails(item)">상세 정보</button>
+                <button @click="addToSchedule(item)">일정 추가</button>
+              </li>
+            </ul>
           </div>
-          <div class="grid-item" style="width: 30%;"></div> <!-- 30%의 빈 영역 -->
+        </div>
+      </div>
+      <div class="selected-itinerary">
+        <h2>선택된 일정</h2>
+        <div v-for="(item, index) in selectedItinerary" :key="`selected-${index}`">
+          <p>{{ item.title }} <button @click="removeFromSchedule(index)">삭제</button></p>
         </div>
       </div>
     </div>
   </template>
+  
   
   <script>
   import axios from 'axios';
@@ -69,7 +74,9 @@
     },
     data() {
       return {
-        itineraries: [] // 여행 일정 데이터를 저장할 배열
+        itineraries: [],
+        selectedItinerary: [],
+        selectedItineraryText: ''
       };
     },
     methods: {
@@ -86,7 +93,7 @@
           .then(response => {
             this.itineraries = response.data.data;
             console.log('서버 응답:', response.data);
-            console.log('서버 응답:', this.itineraries); // 수정된 부분
+            console.log('서버 응답:', this.itineraries);
             alert('데이터 전송 성공');
           })
           .catch(error => {
@@ -97,45 +104,57 @@
       viewDetails() {
         // 상세 정보를 보여주는 로직 추가
       },
-      addSchedule() {
-        // 일정 추가 로직 추가
+      addToSchedule(item) {
+        this.selectedItinerary.push(item);
+        this.updateSelectedItineraryText();
+      },
+      removeFromSchedule(index) {
+        this.selectedItinerary.splice(index, 1);
+        this.updateSelectedItineraryText();
+      },
+      updateSelectedItineraryText() {
+        this.selectedItineraryText = this.selectedItinerary.map(item => item.title).join('\n');
       }
     }
   };
   </script>
   
+
   <style>
-  .grid-container {
-    display: grid;
-    grid-template-columns: repeat(4, auto) 30%;
-    padding: 2px;
-  }
-  
-  .grid-item {
-    padding: 20px;
-    text-align: center;
-    border: 1px solid black; /* 사각형 테두리 추가 */
-  }
-  
-  .grid-title {
-    font-weight: bold;
-    margin-bottom: 10px; /* 마진 줄임 */
-  }
-  
-  .grid-content {
-    margin-bottom: 20px;
-  }
-  
-  .grid-item:last-child {
-    display: none; /* 마지막 그리드 아이템은 숨김 */
-  }
-  
-  .button-group {
-    margin-top: 10px;
-  }
-  
-  .button-group button {
-    margin-right: 10px;
-  }
-  </style>
-  
+.main-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.plan-details {
+  width: 25%;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  width: 50%;
+}
+
+.grid-item {
+  padding: 20px;
+  text-align: center;
+  border: 1px solid black;
+}
+
+.grid-title {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.grid-content {
+  margin-bottom: 20px;
+}
+
+.selected-itinerary {
+  width: 25%;
+  border: 1px solid black;
+  padding: 20px;
+}
+</style>
